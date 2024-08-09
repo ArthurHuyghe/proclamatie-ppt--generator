@@ -26,7 +26,7 @@ Deze Python-code genereert automatisch een PowerPoint-presentatie voor de procla
                         "klas": "[klas]",
                         "leerlingen": [
                             {
-                                "Nr": [nummer],
+                                "Nr": "[nummer]",
                                 "Naam": "[voornaam achternaam]"
                             }
                         ]
