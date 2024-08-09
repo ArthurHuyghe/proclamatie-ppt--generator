@@ -7,13 +7,13 @@ import pptx  # For creating and editing PowerPoint presentations
 
 # Configure paths
 # Path to a JSON file containing the class lists
-path_klaslijst = r".\klaslijsten\klaslijsten zesde jaar.json"
+path_klaslijst = r".\example\klaslijst.json"
 
 # Path to the folders containing the students pictures
-path_fotos_1ste = r".\pasfotos\1e jaar 18-19\allemaal samen"
-path_fotos_3de = r".\pasfotos\3e Jaar 20-21\allemaal samen"
-path_fotos_5de = r".\pasfotos\5e Jaar 22-23\allemaal samen"
-path_fotos_6de = r".\pasfotos\6e jaar 23-24\allemaal samen"
+path_fotos_1ste = r".\example\1ste jaar"
+path_fotos_3de = r".\example\3de jaar"
+path_fotos_5de = r".\example\5de jaar"
+path_fotos_6de = r".\example\6de jaar"
 
 # Load JSON data
 with open(path_klaslijst, "r", encoding="utf-8") as file:
@@ -48,8 +48,12 @@ for titularis in klaslijsten["titularissen"]:
         for leerling in klas["leerlingen"]:
             leerling_name = leerling["Naam"]  # Get the student's name
             # Construct file paths for the student's babyface and grown-up face photos
-            babyface_path = os.path.join(path_fotos_1ste, f"{leerling_name}.jpg")
-            grown_upface_path = os.path.join(path_fotos_6de, f"{leerling_name}.jpg")
+            babyface_path = os.path.join(
+                path_fotos_1ste, f"{leerling_name.lower().replace(" ", ".")}.jpg"
+            )
+            grown_upface_path = os.path.join(
+                path_fotos_6de, f"{leerling_name.lower().replace(" ", ".")}.jpg"
+            )
 
             # Add a slide for the student
             slide = prs.slides.add_slide(prs.slide_layouts[2])
@@ -98,7 +102,7 @@ for titularis in klaslijsten["titularissen"]:
 
 
 # Save the presentation
-prs.save("Proclamatie foto's.pptx")
+prs.save(".\example\Proclamatie foto's.pptx")
 print("Powerpoint succesfully created.")
 
 # Print the lists of students without babyface and grown-up face photos
